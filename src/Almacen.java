@@ -19,7 +19,7 @@ public class Almacen implements IAlmacen {
         nombre = nombre;
         direccion = direccion;
         telefono = telefono;
-        listaProductos = new Lista();
+        listaProductos = new Lista<>();
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Almacen implements IAlmacen {
     }
 
     @Override
-    public void insertarProducto(Object unProducto) {
+    public void insertarProducto(Producto unProducto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -88,7 +88,7 @@ public class Almacen implements IAlmacen {
     }
 
     @Override
-    public Object buscarPorCodigo(Comparable codProducto) {
+    public Producto buscarPorCodigo(Comparable codProducto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -98,7 +98,7 @@ public class Almacen implements IAlmacen {
     }
 
     @Override
-    public Object buscarPorDescripcion(String descripcion) {
+    public Producto buscarPorDescripcion(String descripcion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
