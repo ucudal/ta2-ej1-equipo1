@@ -36,7 +36,10 @@ public class Producto implements IProducto {
 
     @Override
     public Integer getStock() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return stock; 
+    }
+    public void setStock(int valor){
+        stock = valor < 0 ? 0 : valor;
     }
 
     @Override

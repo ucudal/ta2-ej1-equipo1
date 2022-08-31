@@ -58,13 +58,13 @@ public class Almacen implements IAlmacen {
     }
 
     @Override
-    public void insertarProducto(Object unProducto) {
+    public void insertarProducto(Producto unProducto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
     public boolean eliminarProducto(Comparable codProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return (listaProductos.eliminar(codProducto)); 
     }
 
     @Override
@@ -84,11 +84,16 @@ public class Almacen implements IAlmacen {
 
     @Override
     public Integer restarStock(Comparable codProducto, Integer cantidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Nodo<Producto> nodoProducto=listaProductos.buscar(codProducto); 
+        Producto producto= nodoProducto.getDato(); 
+        int stockActual= producto.getStock(); 
+        int nuevoStock= stockActual-cantidad; 
+        producto.setStock(nuevoStock);
+        
     }
 
     @Override
-    public Object buscarPorCodigo(Comparable codProducto) {
+    public Producto buscarPorCodigo(Comparable codProducto) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -98,7 +103,7 @@ public class Almacen implements IAlmacen {
     }
 
     @Override
-    public Object buscarPorDescripcion(String descripcion) {
+    public Producto buscarPorDescripcion(String descripcion) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
