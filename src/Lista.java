@@ -1,7 +1,7 @@
 
 public class Lista<T> implements ILista<T> {
 
-    private Nodo<T> primero;
+    public Nodo<T> primero;
 
     public Lista() {
         primero = null;
