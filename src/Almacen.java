@@ -3,23 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author Martin
  */
 public class Almacen implements IAlmacen {
-    
+
     private String direccion;
     private String telefono;
     private String nombre;
     private Lista<Producto> listaProductos;
-    
+
     public Almacen(String nombre, String direccion, String telefono) {
         nombre = nombre;
         direccion = direccion;
         telefono = telefono;
-        listaProductos = new Lista();
+        listaProductos = new Lista<>();
     }
 
     @Override
@@ -59,7 +58,9 @@ public class Almacen implements IAlmacen {
 
     @Override
     public void insertarProducto(Producto unProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Nodo unNodo = new Nodo(unProducto.getCodProducto(), unProducto);
+        listaProductos.insertar(unNodo);
+
     }
 
     @Override
@@ -79,7 +80,13 @@ public class Almacen implements IAlmacen {
 
     @Override
     public Boolean agregarStock(Comparable codProducto, Integer cantidad) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Nodo<Producto> nodoAIncrementar = listaProductos.buscar(codProducto);
+        if (nodoAIncrementar == null) {
+            return false;
+        } else {
+            nodoAIncrementar.getDato().agregarCantidadStock(cantidad);
+            return true;
+        }
     }
 
     @Override
@@ -111,5 +118,5 @@ public class Almacen implements IAlmacen {
     public int cantidadProductos() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

@@ -10,13 +10,15 @@
 public class Producto implements IProducto {
     
     private Comparable codigoProducto;
+    private String nombre;
     private int precio;
     private int stock;
     
-    public Producto(Comparable codigoProducto, int precio, int stock) {
-        codigoProducto = codigoProducto;
-        precio = precio;
-        stock = stock;
+    public Producto(Comparable codigoProducto, String nombre, int precio, int stock) {
+        this.codigoProducto = codigoProducto;
+        this.precio = precio;
+        this.stock = stock;
+        this.nombre = nombre;
     }
 
     @Override
@@ -38,6 +40,8 @@ public class Producto implements IProducto {
     public Integer getStock() {
         return stock; 
     }
+    
+
     public void setStock(int valor){
         stock = valor < 0 ? 0 : valor;
     }
@@ -54,7 +58,7 @@ public class Producto implements IProducto {
 
     @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return nombre;
     }
 
     @Override
