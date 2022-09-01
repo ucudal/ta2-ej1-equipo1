@@ -10,6 +10,7 @@
 public class Producto implements IProducto {
     
     private Comparable codigoProducto;
+    private String nombre;
     private int precio;
     private int stock;
     
@@ -51,7 +52,7 @@ public class Producto implements IProducto {
 
     @Override
     public String getNombre() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return nombre;
     }
 
     @Override
