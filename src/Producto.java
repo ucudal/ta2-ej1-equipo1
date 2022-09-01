@@ -15,10 +15,10 @@ public class Producto implements IProducto {
     private int stock;
     
     public Producto(Comparable codigoProducto, String nombre, int precio, int stock) {
-        codigoProducto = codigoProducto;
-        precio = precio;
-        stock = stock;
-        nombre = nombre;
+        this.codigoProducto = codigoProducto;
+        this.precio = precio;
+        this.stock = stock;
+        this.nombre = nombre;
     }
 
     @Override
