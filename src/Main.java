@@ -8,14 +8,13 @@ public class Main {
     public static void main(String[] args) {
         Almacen geant = new Almacen("San Martin 2343", "099123456", "Geant");
         int incrementoValor = 0;
-        String[] parte = new String[4];
+        String[] lineaLeidaSeparada = new String[4];
         String[] lectura = ManejadorArchivosGenerico.leerArchivo("src\\altas.txt");
         for (int i = 0; i < lectura.length; i++) {
-            parte = lectura[i].split(",");
-            Comparable a = parte[0];
-            System.out.println(parte[1]);
+            lineaLeidaSeparada = lectura[i].split(",");
+            System.out.println(lineaLeidaSeparada[1]);
             System.out.println("");
-            Producto producto = new Producto(a, parte[1], Integer.parseInt(parte[2]), Integer.parseInt(parte[3]));
+            Producto producto = new Producto(lineaLeidaSeparada[0], lineaLeidaSeparada[1], Integer.parseInt(lineaLeidaSeparada[2]), Integer.parseInt(lineaLeidaSeparada[3]));
             incrementoValor += (producto.getPrecio()*producto.getStock());
             geant.insertarProducto(producto);
 
