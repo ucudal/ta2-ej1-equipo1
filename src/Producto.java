@@ -33,22 +33,27 @@ public class Producto implements IProducto {
 
     @Override
     public void setPrecio(Integer precio) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.precio = (precio < 0) ? 0 : precio;
     }
 
     @Override
     public Integer getStock() {
-        return stock;
+        return stock; 
+    }
+    
+
+    public void setStock(int valor){
+        stock = valor < 0 ? 0 : valor;
     }
 
     @Override
     public void agregarCantidadStock(Integer stock) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.stock += stock;
     }
 
     @Override
     public void restarCantidadStock(Integer stock) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.stock = (stock <= 0) ? 0 : stock;
     }
 
     @Override
@@ -58,7 +63,7 @@ public class Producto implements IProducto {
 
     @Override
     public void setNombre(String nombre) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        this.nombre = (!nombre.isEmpty()) ? nombre : this.nombre;
     }
     
 }
