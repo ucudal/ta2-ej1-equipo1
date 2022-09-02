@@ -13,12 +13,14 @@ public class Almacen implements IAlmacen {
     private String telefono;
     private String nombre;
     private Lista<Producto> listaProductos;
+    private ListaOrdenada<Producto> listaVentas;
 
     public Almacen(String nombre, String direccion, String telefono) {
         this.nombre = nombre;
         this.direccion = direccion;
         this.telefono = telefono;
         listaProductos = new Lista<>();
+        listaVentas = new ListaOrdenada<>();
     }
 
     @Override
@@ -84,15 +86,17 @@ public class Almacen implements IAlmacen {
     public String imprimirProductos() {
         if (listaProductos.esVacia()) {
             return "Lista vacía.";
-        }
-        else {
-            StringBuilder stringBuilder = new StringBuilder("Los productos son:");
+        } else {
+            StringBuilder stringBuilder = new StringBuilder("Los productos son:\n");
             Nodo<Producto> nodoActual = listaProductos.getPrimero();
             Producto producto = nodoActual.getDato();
             while (nodoActual != null) {
-                stringBuilder.append(producto.getNombre()).append("\n");
-                nodoActual = nodoActual.getSiguiente();
                 producto = nodoActual.getDato();
+                stringBuilder.append("Nombre: ").append(producto.getNombre())
+                        .append(" | Precio: ").append(producto.getPrecio())
+                        .append(" | Stock: ").append(producto.getStock())
+                        .append(" | Código de Producto: ").append(producto.getCodProducto()).append("\n");
+                nodoActual = nodoActual.getSiguiente();
             }
             return stringBuilder.toString();
         }
@@ -102,9 +106,8 @@ public class Almacen implements IAlmacen {
     public String imprimirSeparador(String separador) {
         if (listaProductos.esVacia()) {
             return "Lista vacía.";
-        }
-        else {
-            StringBuilder stringBuilder = new StringBuilder("Los productos son:");
+        } else {
+            StringBuilder stringBuilder = new StringBuilder("Los productos son:\n");
             Nodo<Producto> nodoActual = listaProductos.getPrimero();
             Producto producto = nodoActual.getDato();
             while (nodoActual != null) {
@@ -126,6 +129,13 @@ public class Almacen implements IAlmacen {
             return true;
         }
     }
+    
+    public void vender(Producto producto, Integer cantidad) {
+        Comparable codProducto = producto.getCodProducto();
+        restarStock(codProducto, cantidad);
+        Comparable nombre = producto.getNombre();
+        listaVentas.insertarOrdenado(new Nodo(nombre, producto));
+    }
 
     @Override
     public Integer restarStock(Comparable codProducto, Integer cantidad) {
@@ -142,6 +152,7 @@ public class Almacen implements IAlmacen {
         Nodo<Producto> nodoResultado = listaProductos.buscar(codProducto);
         return nodoResultado.getDato();
     }
+    
 
     @Override
     public void listarOrdenadoPorNombre() {
@@ -150,9 +161,9 @@ public class Almacen implements IAlmacen {
         Producto producto = nodoActual.getDato();
 
         while (nodoActual != null) {
+            producto = nodoActual.getDato();
             listaOrdenada.insertarOrdenado(new Nodo(producto.getNombre(), producto));
             nodoActual = nodoActual.getSiguiente();
-            producto = nodoActual.getDato();
         }
         listaOrdenada.imprimir();
     }
@@ -177,6 +188,25 @@ public class Almacen implements IAlmacen {
     @Override
     public int cantidadProductos() {
         return listaProductos.cantElementos();
+    }
+    
+    public String imprimirProductosVendidos() {
+        if (listaVentas.esVacia()) {
+            return "Lista vacía.";
+        } else {
+            StringBuilder stringBuilder = new StringBuilder("Los productos son:\n");
+            Nodo<Producto> nodoActual = listaVentas.getPrimero();
+            Producto producto = nodoActual.getDato();
+            while (nodoActual != null) {
+                producto = nodoActual.getDato();
+                stringBuilder.append("Nombre: ").append(producto.getNombre())
+                        .append(" | Precio: ").append(producto.getPrecio())
+                        .append(" | Stock: ").append(producto.getStock())
+                        .append(" | Código de Producto: ").append(producto.getCodProducto()).append("\n");
+                nodoActual = nodoActual.getSiguiente();
+            }
+            return stringBuilder.toString();
+        }
     }
 
 }

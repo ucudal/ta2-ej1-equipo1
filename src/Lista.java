@@ -115,17 +115,10 @@ public class Lista<T> implements ILista<T> {
 
     @Override
     public void setPrimero(Nodo<T> unNodo) {
-        if (primero == null) {
-            primero = unNodo;
-            longitud++;
-        } else {
-            // antes de borrar el nodo, apuntamos su siguiente a null, para no tener punteros perdidos.
-            primero.setSiguiente(null);
-            primero = unNodo;
-            longitud++;
-        }
+        primero = unNodo;
+        longitud++;
     }
-    
+
     public Nodo<T> getPrimero() {
         return primero;
     }
